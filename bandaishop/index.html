@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BANDAI shop</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+</head>
+<body style="font-family: Arial, Helvetica, sans-serif;">
+	<div class="logo">
+		<h1>BANDAI</h1>
+		<h2>QUALITY is THE FIRST PRIORITY</h2>
+	</div>
+	<div class="searchbar">
+			<input id="find" placeholder="  Enter something">
+			<button><i class="fas fa-search"></i></button>
+	</div>
+	<div class="optionbar">
+		<ul>
+			<li><a href="#">HOME</a></li>
+			<li><a href="#">GUNDAM shf</a></li>
+			<li><a href="#">KAMEN RIDER shf</a></li>
+			<li><a href="#">SUPER SENTAI shf</a></li>
+		</ul>
+		<button onclick="discart()"><i class="fas fa-cart-plus"></i></button>
+	</div>
+	<div id="sanpham">
+		<div class="titlebar">
+			<h1><i class="fas fa-list"></i>&nbspPRODUCT LIST</h1>
+		</div>
+		<div id="productlist" class="grid">	
+		</div>
+		<hr>
+		<div>
+			
+		</div>
+	</div>
+	<div id="giohang" style="display: none">
+		<div class="titlebar">
+			<h1><i class="fas fa-list"></i>&nbspYOUR CART</h1>
+		</div>
+		<div class="grid2">
+				<h4>Image</h4>
+				<h4>Name</h4>
+				<h4>Price</h4>
+				<h4>Option</h4>
+			</div>	
+		<div id="cartlist">
+			<h1>..Your cart is empty..</h1>
+		</div>
+		<hr>
+		<div>
+			<div class="paymentbar">
+				<div>
+					<h1>Discount code:</h1>
+				</div>
+				<div>
+					<input id="discount" placeholder="  Have you got any discount code?"></input>
+					<button>APPLY NOW</button>
+				</div>
+			</div>
+			<div class="paymentbar">
+				<div>
+					<h1>Total:</h1>
+				</div>
+				<div>
+					<input id="summ"></input>
+					<button>BUY NOW</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var prod1 = {
+			anh: "gundam1.jpg",
+			ten: "GUNDAM ver. standard collection",
+			gia: 1500000
+		}
+		var prod2 = {
+			anh: "gundam2.jpg",
+			ten: "GUNDAM gold ver 2.0.0 limited",
+			gia: 1500000
+		}
+		var prod3 = {
+			anh: "gundam3.jpg",
+			ten: "GUNDAM ver. standard builder",
+			gia: 1500000
+		}
+		var prod4 = {
+			anh: "km1.jpg",
+			ten: "Kamen rider WIZARD shf",
+			gia: 1500000
+		}
+		var prod5 = {
+			anh: "km2.jpeg",
+			ten: "Kamen rider OOO shf ver. standard",
+			gia: 1500000
+		}
+		var prod6 = {
+			anh: "km2.jpg",
+			ten: "Kamen rider DECADE shf ver. standard",
+			gia: 1500000
+		}
+		var prod7 = {
+			anh: "km4.jpg",
+			ten: "Kamen rider DEEND shf ver. standard",
+			gia: 1500000
+		}
+		var prod8 = {
+			anh: "sp1.jpg",
+			ten: "Shikenger BLUE shf ver. standard",
+			gia: 1500000
+		}
+		var prod9 = {
+			anh: "sp2.jpg",
+			ten: "Gokaiger RED shf ver. standard",
+			gia: 1500000
+		}
+		var prod10 = {
+			anh: "sp3.jpg",
+			ten: "Super sentai SHINKENGER shf ver. standard",
+			gia: 1500000
+		}
+
+		var products = [prod1,prod2,prod3,prod4,prod5,prod6,prod7,prod8,prod9,prod10];
+		console.log(products);
+		displayproducts();
+		var cart = [];
+		
+		function displayproducts(){
+			for (var i = 0; i < products.length; i++) {
+				var container = document.getElementById("productlist");
+				var div1 = document.createElement("div");
+				div1.className = "box";
+				var div2 = document.createElement("div");
+				div2.className = "buttonbox";
+				var name = document.createElement("h4");
+				var image = document.createElement("img");
+				var price = document.createElement("h4");
+				var order = document.createElement("button");
+				var detail = document.createElement("button");
+
+				image.src = products[i].anh;
+				name.innerHTML = products[i].ten;
+				price.innerHTML = products[i].gia;
+		
+				order.innerHTML = "ORDER";
+				order.onclick = function(arg1){
+					return function(){
+						cart.push(products[arg1]);
+						console.log(cart);
+						document.getElementById("cartlist").innerHTML = ' ';
+						sum();
+						displaycart();
+					}
+				}(i);
+				detail.innerHTML = "DETAIL";
+
+				div1.appendChild(image);
+				div1.appendChild(name);
+				div1.appendChild(price);
+				div2.appendChild(order);
+				div2.appendChild(detail);
+				div1.appendChild(div2);
+
+				container.appendChild(div1);
+			}
+		}
+		function displaycart(){
+			for (var i = 0; i <cart.length; i++) {
+				var container2 = document.getElementById("cartlist");
+				var div = document.createElement("div");
+				div.className = "gridc";
+				var image2 = document.createElement("img");
+				var name2 = document.createElement("h5");
+				var price2 = document.createElement("h5");
+				var remove = document.createElement("button");
+
+				image2.src = cart[i].anh;
+				name2.innerHTML = cart[i].ten;
+				price2.innerHTML = cart[i].gia;
+				remove.innerHTML = "REMOVE";
+				remove.onclick = function(arg3){
+					return function(){
+						cart.splice(arg3,1);
+						document.getElementById("cartlist").innerHTML = ' ';	
+						displaycart();
+						sum();
+					}
+				}(i)
+
+				div.appendChild(image2);
+				div.appendChild(name2);
+				div.appendChild(price2);
+				div.appendChild(remove);
+				container2.appendChild(div);
+			}
+		}
+		function discart(){
+			document.getElementById("giohang").style.display = "block";
+			document.getElementById("sanpham").style.display = "none";
+			
+		}
+		function disproduct(){
+			document.getElementById("giohang").style.display = "none";
+			document.getElementById("sanpham").style.display = "block";
+		}
+		function sum(){
+			var sumof = 0;
+			for (var i = 0; i < cart.length; i++) {
+				sumof += cart[i].gia;
+			}
+			document.getElementById("summ").value = sumof;
+		}
+	</script>
+</body>
+</html>
