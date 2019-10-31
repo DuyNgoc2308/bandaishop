@@ -1,6 +1,6 @@
 .logo{
 	height: 300px;
-	background-image: url("logo.png");
+	background-image: url("imgs/logo.png");
 	text-align: center;
 }
 .logo h1{
@@ -29,8 +29,8 @@ button{
 .searchbar{
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	background-color: #00001a;
+	justify-content: space-between;
+	background-color: #101D2E;
 	padding: 10px 10px;
 }
 .searchbar input{
@@ -48,9 +48,20 @@ button{
 	color: white;
 	margin-left: 5px;
 }
+.slide{
+	height: 300px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #052440;
+}
+.slide img{
+	height: 300px;
+	width: 1600px;
+}
 .optionbar{
 	display: flex;
-	background-color:#333;
+	background-color:#1E3E59;
 	justify-content: space-between;
 	align-items: center;
 }
@@ -72,9 +83,8 @@ li a {
   padding: 14px 16px;
   text-decoration: none;
 }
-
 li a:hover {
-  background-color: #111;
+  background-color: #84A9BF;
 }
 .optionbar button{
 	margin-right: 10px; 
@@ -94,6 +104,7 @@ li a:hover {
 	border-radius: 5px;
 	padding: 10px 10px;
 	margin-right: 10px;
+	background-color: white;
 }
 .box button{
 	height: 30px;
@@ -118,6 +129,7 @@ h4{
 	align-items: center;
 	justify-content: center;
 	grid-template-columns: auto auto auto;
+	
 }
 .grid img{
 	height: 350px;
@@ -151,6 +163,31 @@ h4{
 	border: none;
 	border-radius: 5px;
 }
+.discountbar{
+	display: flex;
+	justify-content: space-between;
+	text-align: center;
+	align-items: center;
+	background-color: #1E3E59;
+	color: white;
+	padding: 10px 10px;
+}
+.discountbar button{
+	height: 60px;
+	width: 150px;
+	border: none;
+	border-radius: 5px;
+	padding: 15px 15px;
+}
+.discountbar input{
+	height: 30px;
+	width: 320px;
+	border: none;
+	border-radius: 5px;
+	background-color: white;
+	font-size: 20px;
+	padding: 15px 15px;
+}
 .paymentbar{
 	display: flex;
 	justify-content: space-between;
@@ -158,11 +195,11 @@ h4{
 	align-items: center;
 	background-color: #00001a;
 	color: white;
-	padding: 15px 15px;
-
+	padding: 10px 10px;
 }
+
 .paymentbar button{
-	height: 100px;
+	height: 130px;
 	width: 100px;
 	border: none;
 	border-radius: 5px;
@@ -175,4 +212,17 @@ h4{
 	background-color: white;
 	font-size: 20px;
 	padding: 15px 15px;
+}
+
+.footer{
+	display: grid;
+	grid-template-columns: auto auto auto;
+	background-color: #052440;
+	color: white;
+}
+.footer h5{
+	font-weight: normal;
+}
+.footer h5:hover{
+	color: orange; 
 }
