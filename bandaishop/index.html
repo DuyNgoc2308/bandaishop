@@ -7,18 +7,18 @@
 </head>
 <body style="font-family: Arial, Helvetica, sans-serif;">
 	<div id="bar" class="searchbar">
-			<div id="findst" >
-				<input id="insp" placeholder="  Enter something">
+			<div>
+				<input id="insp" placeholder="Enter something">
 				<button onclick="search()"><i class="fas fa-search"></i></button>
 			</div>
-			<div id="lands" >
+			<div>
 				<button onclick="signin()"><i class="fas fa-user"></i></button>
 				<button onclick="signup()"><i class="fas fa-user-plus"></i></button>
 			</div>
 	</div>
 	<div class="logo">
 		<h1>BANDAI</h1>
-		<h2>QUALITY is THE FIRST PRIORITY</h2>
+		<h2 style="font-family:Courier New;">QUALITY is THE FIRST PRIORITY</h2>
 	</div>
 	<div id="slshow" class="slide">
 		<img id="myImage" src="imgs/sl1.jpg">
@@ -66,6 +66,7 @@
 				<h4>Image</h4>
 				<h4>Name</h4>
 				<h4>Price</h4>
+				<h4>Quantity</h4>
 				<h4>Option</h4>
 			</div>	
 		<div id="cartlist">
@@ -78,7 +79,7 @@
 					<h1>Discount code:</h1>
 				</div>
 				<div>
-					<input id="discount" placeholder="  Have you got any discount code?"></input>
+					<input id="discount" placeholder="Have you got any discount code?"></input>
 					<button onclick="applydiscount()">APPLY NOW</button>
 				</div>
 			</div>
@@ -88,7 +89,7 @@
 				</div>
 				<div>
 					<input id="summ"></input>
-					<button>BUY NOW</button>
+					<button onclick="buynow()">BUY NOW</button>
 				</div>
 			</div>
 		</div>
@@ -111,7 +112,9 @@
 			</div>
 		</div>
 	</div>
-
+	<div id="tratien" style="display: none">
+		
+	</div>
 	<script src="bandai.js">
 	</script>
 </body>
