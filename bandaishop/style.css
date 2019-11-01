@@ -133,7 +133,7 @@ li a:hover {
 .buttonbox{
 	display: flex;
 	align-items: center;
-	justify-content: space-around;
+	justify-content: space-between;
 }
 h4{
 	font-weight: normal;
@@ -268,4 +268,20 @@ h4{
 .paymentbox button {
 	height: 30px;
 	width: 100px;
+}
+.gridd{
+	display: grid;
+	grid-template-columns: auto auto auto auto;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	margin-top: 20px;
+	padding: 10px 16px;
+	
+}
+.gridd img{
+	height: 100px;
+	width: 180px;
+	border: 1px solid lightgrey;
+	border-radius: 5px;
 }

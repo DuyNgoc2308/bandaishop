@@ -116,20 +116,7 @@ function displayproducts(){
 		order.onclick = function(arg1){
 			return function(){
 				alert("Added into your cart!");
-				if (cart===null) {cart.push(products[arg1]);}else{
-				for (var j = 0; j < cart.length; j++) {
-					if (cart[j].ten==products[arg1].ten) {
-						cart[j].sl++;
-						break;
-
-					} 
-					if (dem==cart[j].length+1) {
-						cart.push(products[arg1]);
-						break;
-					}
-						dem++;
-				}}
-				
+				cart.push(products[arg1]);
 				console.log(cart);
 				document.getElementById("cartlist").innerHTML = ' ';
 				sum();
@@ -202,8 +189,7 @@ function dispayment(){
 	document.getElementById("giohang").style.display = "none";
 	document.getElementById("sanpham").style.display = "none";
 	document.getElementById("tratien").style.display = "block";
-	document.getElementById("findst").style.display = "none";
-	document.getElementById("lands").style.display = "none";
+	document.getElementById("bar").style.display = "none";;
 	document.getElementById("slshow").style.display = "none ";
 }
 		
@@ -332,11 +318,9 @@ function buynow(){
 		// document.getElementById("giohang").innerHTML = ' ';
 		// alert("Just some mimutes");
 		dispayment();
-		var payment = document.getElementById("tratien");
+		var payment = document.getElementById("tratiendiv");
 		var div = document.createElement("div");
 		div.className = "paymentbox";
-		var div2 = document.createElement("div");
-		div2.className = "buttonbox";
 		var lname = document.createElement("label");
 		lname.innerHTML = "Your full name:";
 		var name = document.createElement("input");
@@ -354,15 +338,13 @@ function buynow(){
 		var city = document.createElement("input");
 		var pay = document.createElement("button");
 		pay.innerHTML = "CONFIRM";
-
+		
 		pay.onclick = function(){
-			if (name.innerHTML == ''||phone.innerHTML == ''||street.innerHTML==''||district.innerHTML==''||city.innerHTML==''){
+			if (name.value == ''||phone.value == ''||street.value==''||district.value==''||city.value==''){
 				alert("You forgot something?");
-			 
 			}else{
 				alert("Delivering");
 			}
-			
 		}
 		var back = document.createElement("button");
 		back.innerHTML = "BACK";
@@ -381,11 +363,34 @@ function buynow(){
 		div.appendChild(district);
 		div.appendChild(lcity);
 		div.appendChild(city);
-		div2.appendChild(back);
-		div2.appendChild(pay);
-		div.appendChild(div2);
+		
+		for (var i = 0; i < cart.length; i++) {
+			var containerpm = document.getElementById("ghthanhtoan");
+			var div1 = document.createElement("div");
+			div1.className = "gridd";
+			var image = document.createElement("img");
+			var name = document.createElement("h5");
+			var price = document.createElement("h5");
+
+			image.src = cart[i].anh;
+			name.innerHTML = cart[i].ten;
+			price.innerHTML = cart[i].gia;
+			
+			div1.appendChild(image);
+			div1.appendChild(name);
+			div1.appendChild(price);
+			containerpm.appendChild(div1);
+		}
+
+		
 
 		payment.appendChild(div);
+
+		var butbox = document.getElementById("tratien");
+		butbox.className = "buttonbox";
+		butbox.appendChild(back);
+		butbox.appendChild(pay);
+
 	}
 
 }
