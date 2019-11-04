@@ -130,7 +130,7 @@ li a:hover {
 .clearfix:hover {
 	transform: scale(1.1,1.1);
 }
-.buttonbox{
+.flexbox{
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -148,8 +148,8 @@ h4{
 }
 .grid img{
 	height: 350px;
-	width: 380px;
-	border: none;
+	width: 400px;
+	border: 1px solid lightgrey;
 	border-radius: 5px;
 }
 .grid2{
@@ -242,11 +242,16 @@ h4{
 	color: orange; 
 }
 .paymentbox{
+	background-image: url("imgs/bgr.jpg");
 	display: grid;
 	align-items: center;
 	justify-content: center;
 	grid-template-columns: auto;
 	flex-wrap: 20px;
+	color: white;
+	margin-top: 5px;
+	padding: 15px 15px;
+	padding-top: 70px;
 }
 
 .paymentbox label {
@@ -265,16 +270,13 @@ h4{
 	top: -1px;
 	*overflow: hidden;
 }
-.paymentbox button {
-	height: 30px;
-	width: 100px;
-}
+
 .gridd{
 	display: grid;
 	grid-template-columns: auto auto auto auto;
 	text-align: center;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-around;
 	margin-top: 20px;
 	padding: 10px 16px;
 	
@@ -284,4 +286,38 @@ h4{
 	width: 180px;
 	border: 1px solid lightgrey;
 	border-radius: 5px;
+}
+.updownstyle{
+	display: grid;
+	grid-template-columns: auto;
+}
+.quantity{
+	display: flex;
+}
+.quantity input{
+	width: 50px;
+}
+.quantity button{
+	width: 30px;
+	border-radius: 0px;
+}
+.flexbox button {
+	height: 30px;
+	width: 150px;
+}
+.flexbox input {
+	height: 50px;
+	width: 150px;
+	font-size: 20px;
+}
+.gridpayment{
+	display: grid;
+	grid-template-columns: auto auto auto auto;
+	text-align: center;
+	align-items: center;
+	justify-content: space-around;
+	margin-top: 20px;
+	padding: 10px 16px;
+	background-color: #00001A;
+	color: white;
 }

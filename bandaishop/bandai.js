@@ -74,7 +74,7 @@ var prod9 = {
 }
 var prod10 = {
 	anh: "imgs/sp3.jpg",
-	ten: "Super sentai SHINKENGER shf ver. standard",
+	ten: "SHINKENGER shf ver. collection 6",
 	gia: 1500000,
 	loai: "sp",
 	chitiet: "Two types of head blade antennas are included for each of the destroy mode and unicorn mode.",
@@ -84,14 +84,21 @@ var prod10 = {
 var products = [prod1,prod2,prod3,prod4,prod5,prod6,prod7,prod8,prod9,prod10];
 console.log(products);
 displayproducts();
-var cart = [];		
+var cart = [];
 function displayproducts(){
+	document.getElementById("productlist").innerHTML = ' ';
+	document.getElementById("giohang").style.display = "none";
+	document.getElementById("sanpham").style.display = "block";
+	document.getElementById("tratien").style.display = "none";
+	document.getElementById("bar").style.display = "flex";
+	document.getElementById("slshow").style.display = "block ";
+	document.getElementById("category").style.display = "flex";
 	for (var i = 0; i < products.length; i++) {
 		var container = document.getElementById("productlist");
 		var div1 = document.createElement("div");
 		div1.className = "clearfix";
 		var div2 = document.createElement("div");
-		div2.className = "buttonbox";
+		div2.className = "flexbox";
 		var name = document.createElement("h4");
 		var image = document.createElement("img");
 		var price = document.createElement("h4");
@@ -100,13 +107,12 @@ function displayproducts(){
 
 		image.src = products[i].anh;
 		name.innerHTML = products[i].ten;
-		price.innerHTML = products[i].gia;
+		price.innerHTML = products[i].gia+"VND";
 		
 		order.innerHTML = "ORDER";
-		var dem = 0;
 		order.onclick = function(arg1){
 			return function(){
-				alert("Added into your cart!");
+				// alert("Added into your cart!");
 				var iname = products[arg1].ten;
                 var itontai = -1;
                 for (var k = 0; k < cart.length; k++) {
@@ -124,18 +130,19 @@ function displayproducts(){
                         sl: 1
                     });
                 }
+              
                 console.log(cart);
 				document.getElementById("cartlist").innerHTML = ' ';
 				sum();
-				displaycart();
+
             }
         }(i);
 		detail.innerHTML = "DETAIL";
 		detail.onclick = function(arg){
 			return function(){
 				alert("I am going to move to the next page");
-				document.getElementById("productlist").innerHTML = ' ';
-				viewdetail();
+				// document.getElementById("productlist").innerHTML = ' ';
+				// viewdetail();
 			}
 		}(i);
 		div1.appendChild(image);
@@ -148,72 +155,85 @@ function displayproducts(){
 		container.appendChild(div1);
 	}
 }
+
 function displaycart(){
+	document.getElementById("giohang").style.display = "block";
+	document.getElementById("sanpham").style.display = "none";
+	document.getElementById("tratien").style.display = "none";
+	document.getElementById("bar").style.display = "none";
+	document.getElementById("slshow").style.display = "none";
+	document.getElementById("category").style.display = "flex";
 	for (var i = 0; i <cart.length; i++) {
-		var container2 = document.getElementById("cartlist");
-		var div = document.createElement("div");
-		div.className = "gridc";
+		container2 = document.getElementById("cartlist");
+		var div1 = document.createElement("div");
+		div1.className = "gridc";
+		var div2 = document.createElement("div");
+		div2.className = "quantity";
+		var div3 = document.createElement("div");
+		div3.className = "updownstyle";
 		var image2 = document.createElement("img");
 		var name2 = document.createElement("h5");
 		var price2 = document.createElement("h5");
-		var quantity2 = document.createElement("h5");
+		var quantity2 = document.createElement("input");
+		var up = document.createElement("button");
+		up.className = "fas fa-sort-up";
+		up.onclick = function(arg2){
+			return function(){
+				cart[arg2].sl ++;
+				document.getElementById("cartlist").innerHTML = ' ';	
+				displaycart();
+				sum();
+			}
+		}(i);
+		var down = document.createElement("button");
+		down.className = "fas fa-sort-down";
+		down.onclick = function(arg3){
+			return function(){
+				cart[arg3].sl --;
+				if (cart[arg3].sl == 0) {
+					cart.splice(arg3,1);
+				}
+				document.getElementById("cartlist").innerHTML = ' ';	
+				displaycart();
+				sum();
+			}
+		}(i);
 		var remove = document.createElement("button");
 
 		image2.src = cart[i].anh;
 		name2.innerHTML = cart[i].ten;
 		price2.innerHTML = cart[i].gia;
-		quantity2.innerHTML = cart[i].sl;
+		quantity2.value = cart[i].sl;
 		remove.innerHTML = "REMOVE";
-		remove.onclick = function(arg3){
+		remove.onclick = function(arg4){
 			return function(){
-				for (var i = 0; i < cart.length; i++) {
-					cart[i].sl--;
-					if(cart[i].sl == 0){
-						cart.splice(arg3,1);
-					}
-				}
+				cart.splice(arg4,1);
 				document.getElementById("cartlist").innerHTML = ' ';	
 				displaycart();
 				sum();
 			}
 		}(i)
 
-		div.appendChild(image2);
-		div.appendChild(name2);
-		div.appendChild(price2);
-		div.appendChild(quantity2);
-		div.appendChild(remove);
-		container2.appendChild(div);
+		div1.appendChild(image2);
+		div1.appendChild(name2);
+		div1.appendChild(price2);
+		div2.appendChild(quantity2);
+		div3.appendChild(up);
+		div3.appendChild(down);
+		div2.appendChild(div3);
+		div1.appendChild(div2);
+		div1.appendChild(remove);
+		container2.appendChild(div1);
 	}
 }
-function discart(){
-	document.getElementById("giohang").style.display = "block";
-	document.getElementById("sanpham").style.display = "none";
-	document.getElementById("tratien").style.display = "none";
-	document.getElementById("bar").style.display = "none";
-	document.getElementById("slshow").style.display = "none";
-}
-function disproduct(){
-	document.getElementById("giohang").style.display = "none";
-	document.getElementById("sanpham").style.display = "block";
-	document.getElementById("tratien").style.display = "none";
-	document.getElementById("bar").style.display = "flex";
-	document.getElementById("slshow").style.display = "block ";
-}
-function dispayment(){
-	document.getElementById("giohang").style.display = "none";
-	document.getElementById("sanpham").style.display = "none";
-	document.getElementById("tratien").style.display = "block";
-	document.getElementById("bar").style.display = "none";;
-	document.getElementById("slshow").style.display = "none ";
-}
-		
+	
 function sum(){
 	var sumof = 0;
 	for (var i = 0; i < cart.length; i++) {
 		sumof += cart[i].gia * cart[i].sl;
 	}
 	document.getElementById("summ").value = sumof;
+	document.getElementById("tongtien").value = sumof;
 }
 		
 function applydiscount(){
@@ -238,57 +258,123 @@ function applydiscount(){
 }
 		
 function search(){
-	alert("I haven't done")
+	document.getElementById("productlist").innerHTML = ' ';
+	var find = document.getElementById("insp").value.toLowerCase();
+	for (var i = 0; i < products.length; i++) {
+		if (find === products[i].ten.toLowerCase()) {
+			var container = document.getElementById("productlist");
+			var div1 = document.createElement("div");
+			div1.className = "clearfix";
+			var div2 = document.createElement("div");
+			div2.className = "flexbox";
+			var name = document.createElement("h4");
+			var image = document.createElement("img");
+			var price = document.createElement("h4");
+			var order = document.createElement("button");
+			var detail = document.createElement("button");
+
+			
+			image.src = products[i].anh;
+			name.innerHTML = products[i].ten;
+			price.innerHTML = products[i].gia;
+			
+			order.innerHTML = "ORDER";
+			var dem = 0;
+			order.onclick = function(arg5){
+				return function(){
+					alert("Added into your cart!");
+					var iname = products[arg5].ten;
+	                var itontai = -1;
+	                for (var k = 0; k < cart.length; k++) {
+	                    if (cart[k].ten == iname) {
+	                        itontai = k;
+	                    }
+	                }
+	                if (itontai != -1) {
+	                    cart[itontai].sl += 1;
+	                } else {
+	                    cart.push({
+	                    	anh: products[arg5].anh,
+	                        ten: products[arg5].ten,
+	                        gia: products[arg5].gia,
+	                        sl: 1
+	                    });
+	                }
+	                console.log(cart);
+					document.getElementById("cartlist").innerHTML = ' ';
+					sum();
+					displaycart();
+	            }
+	        }(i);
+			detail.innerHTML = "DETAIL";
+			detail.onclick = function(arg){
+				return function(){
+					alert("I am going to move to the next page");
+					document.getElementById("productlist").innerHTML = ' ';
+					viewdetail();
+				}
+			}(i);
+			div1.appendChild(image);
+			div1.appendChild(name);
+			div1.appendChild(price);
+			div2.appendChild(order);
+			div2.appendChild(detail);
+			div1.appendChild(div2);
+
+
+			container.appendChild(div1);
+
+			var backbutton = document.createElement("button");
+			backbutton.innerHTML = "BACK";
+			backbutton.onclick = function(){
+				document.getElementById("productlist").innerHTML = ' ';
+				displayproducts();
+			}
+			var butbox = document.getElementById("productlist");
+			butbox.appendChild(backbutton);
+		}
+	}
 }
-		// var gundamlist = [];
-		// function displaygundam(){
-		// 	for (var i = 0; i < products.length; i++) {
-		// 		if (products[i].loai === "gd") {
-		// 			document.getElementById("productlist").innerHTML = ' ';
-		// 			console.log(products[i]);
-		// 			gundamlist.push(products[i]);
-		// 			for (var j = 0; j < gundamlist.length; j++) {
-					
-		// 				var containerr = document.getElementById("productlist");
-		// 				var div11 = document.createElement("div");
-		// 				div11.className = "box";
-		// 				var div22 = document.createElement("div");
-		// 				div22.className = "buttonbox";
-		// 				var name = document.createElement("h4");
-		// 				var image = document.createElement("img");
-		// 				var price = document.createElement("h4");
-		// 				var order = document.createElement("button");
-		// 				var detail = document.createElement("button");
+var gundamlist = [];
+var kamenlist = [];
+var sentailist = [];
 
-		// 				image.src = gundamlist[j].anh;
-		// 				name.innerHTML = gundamlist[j].ten;
-		// 				price.innerHTML = gundamlist[j].gia;
-				
-		// 				order.innerHTML = "ORDER";
-		// 				order.onclick = function(argg){
-		// 					return function(){
-		// 						alert("Added into your cart!");
-		// 						cart.push(gundamlist[argg]);
-		// 						console.log(cart);
-		// 						document.getElementById("cartlist").innerHTML = ' ';
-		// 						sum();
-		// 						displayproducts();
-		// 					}
-		// 				}(j);
-		// 				detail.innerHTML = "DETAIL";
-
-		// 				div11.appendChild(image);
-		// 				div11.appendChild(name);
-		// 				div11.appendChild(price);
-		// 				div22.appendChild(order);
-		// 				div22.appendChild(detail);
-		// 				div11.appendChild(div22);
-
-		// 				containerr.appendChild(div11);
-		// 			}
-		// 		}
-		// 	}
-		// }
+function displaygundam(){
+	for (var i = 0; i < products.length; i++) {
+		if (products[i].loai === "gd") {
+			
+			console.log(products[i]);
+			gundamlist.push(products[i]);
+		}
+	}
+	products=gundamlist;
+	document.getElementById("productlist").innerHTML = ' ';
+	displayproducts();
+}
+function displaykamen(){
+	for (var i = 0; i < products.length; i++) {
+		if (products[i].loai === "km") {
+			
+			console.log(products[i]);
+			kamenlist.push(products[i]);
+		}
+	}
+	products=kamenlist;
+	document.getElementById("productlist").innerHTML = ' ';
+	displayproducts();
+}
+function displaysentai(){
+	for (var i = 0; i < products.length; i++) {
+		if (products[i].loai === "sp") {
+			
+			console.log(products[i]);
+			sentailist.push(products[i]);
+		}
+	}
+	products=sentailist;
+	document.getElementById("productlist").innerHTML = ' ';
+	displayproducts();
+}
 // function viewdetail(){
 // 	for (var i = 0; i < products.length; i++) {
 // 		var detailbox = document.getElementById("productlist");
@@ -299,7 +385,6 @@ function search(){
 // 		var moreinfo = document.createElement("h4");
 // 		var back = document.createElement("button");
 				
-
 // 		image.src = products[i].anh;
 // 		name.innerHTML = products[i].ten;
 // 		price.innerHTML =products[i].gia+ " VND";
@@ -325,14 +410,19 @@ function signup(){
 	alert("I haven't done");
 }
 function buynow(){
+	document.getElementById("category").style.display = "none";
+	document.getElementById("giohang").style.display = "none";
+	document.getElementById("sanpham").style.display = "none";
+	document.getElementById("tratien").style.display = "block";
+	document.getElementById("bar").style.display = "none";;
+	document.getElementById("slshow").style.display = "none ";
 	if (cart.length == 0) {
 		alert("Your cart is empty, please order something.");
-		disproduct();
+		displayproducts();
 	}
 	else{
 		// document.getElementById("giohang").innerHTML = ' ';
 		// alert("Just some mimutes");
-		dispayment();
 		var payment = document.getElementById("tratiendiv");
 		var div = document.createElement("div");
 		div.className = "paymentbox";
@@ -358,15 +448,17 @@ function buynow(){
 			if (name.value == ''||phone.value == ''||street.value==''||district.value==''||city.value==''){
 				alert("You forgot something?");
 			}else{
-				alert("Delivering");
-				disproduct();
+				alert(name.value+" your order will be delivered for the next 3-4 days.");
+				displayproducts();
 			}
 		}
 		var back = document.createElement("button");
 		back.innerHTML = "BACK";
 		back.onclick = function(){
 			document.getElementById("tratien").innerHTML = ' ';
-			discart();
+			document.getElementById("productlist").innerHTML = ' ';
+			document.getElementById("cartlist").innerHTML = ' ';
+			displaycart();
 		}
 
 		div.appendChild(lname);
@@ -401,14 +493,12 @@ function buynow(){
 			containerpm.appendChild(div1);
 		}
 
-		
-
 		payment.appendChild(div);
-
-		var butbox = document.getElementById("tratien");
-		butbox.className = "buttonbox";
+		var butbox = document.getElementById("bandp");
+		butbox.className = "flexbox";
 		butbox.appendChild(back);
 		butbox.appendChild(pay);
+
 
 	}
 
